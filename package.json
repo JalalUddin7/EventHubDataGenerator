@@ -1,0 +1,19 @@
+{
+  "name": "faker-app",
+  "version": "1.0.0",
+  "description": "A faker app to pass data across to Azure",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jalal Uddin",
+  "license": "ISC",
+  "dependencies": {
+    "@azure/event-hubs": "^2.1.4",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "faker": "^4.1.0",
+    "json-schema-faker": "^0.5.0-rc23"
+  }
+}

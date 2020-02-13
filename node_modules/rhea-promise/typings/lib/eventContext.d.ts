@@ -1,0 +1,86 @@
+import { Connection } from "./connection";
+import { Container } from "./container";
+import { Session } from "./session";
+import { Delivery, Message, ConnectionError, EventContext as RheaEventContext } from "rhea";
+import { Receiver } from "./receiver";
+import { Sender } from "./sender";
+import { Link } from './link';
+/**
+ * Describes the signature of the event handler for any event emitted by rhea-promise.
+ * @type OnAmqpEvent
+ * @param {EventContext} context The rhea-promise event context.
+ */
+export declare type OnAmqpEvent = (context: EventContext) => void;
+/**
+ * Defines the AMQP Connection context. This context is provided when you add an
+ * event handler to any of the objects.
+ * @interface EventContext
+ */
+export interface EventContext {
+    /**
+     * @property {Connection} connection The amqp connection.
+     */
+    connection: Connection;
+    /**
+     * @property {Container} container The amqp container
+     */
+    container: Container;
+    /**
+     * @property {Session} [session] The amqp session link that was created on the amqp connection.
+     */
+    session?: Session;
+    /**
+     * @property {Delivery} [delivery] The amqp delivery that is received after sending a message.
+     */
+    delivery?: Delivery;
+    /**
+     * @property {AmqpMessage} [message] The amqp message that is received in the message event
+     * handler when rhea emits a message event on a receiver.
+     */
+    message?: Message;
+    /**
+     * @property {Receiver} [receiver] The amqp receiver link that was created on the amqp connection.
+     */
+    receiver?: Receiver;
+    /**
+     * @property {Sender} [sender] The amqp sender link that was created on the amqp connection.
+     */
+    sender?: Sender;
+    /**
+     * @property {Error | ConnectionError} [error] An optional error object.
+     * - On `connection_error` event this property will be present. It will have the same information as
+     * `connection.error` but the type will be `ConnectionError`.
+     * - An error with SASL will be available through this property, but not through `connection.error`
+     * (as the amqp connection was never established).
+     * - On `disconnected` event the context will have an error property that will be of type
+     * `Error` (or some subclass) as emitted by the underlying socket.
+     * - The `session_error`, `sender_error` and `receiver_error` events will not have this (`error`)
+     * property on the EventContext.
+     */
+    error?: Error | ConnectionError;
+    /**
+     * @property {boolean} [reconnecting] The value is true if the library is attempting to automatically
+     * reconnect and false if it has reached the reconnect limit. If reconnect has not been enabled
+     * or if the connection is a tcp server, then the reconnecting property is undefined. This property
+     * is used in conjunction with "disconnected" event.
+     */
+    reconnecting?: boolean;
+    /**
+     * @property {RheaEventContext} _context The EventContext emitted by objects from rhea. This
+     * can be used as a fallback mechanism when the translated EventContext provided by this library
+     * has any issues.
+     */
+    _context: RheaEventContext;
+}
+export declare module EventContext {
+    /**
+     * Translates rhea's EventContext into rhea-promise EventContext
+     * @param rheaContext The received context from rhea's event emitter
+     * @param emitter The rhea-promise equivalent object that is supposed emit the same event
+     * @param eventName The name of the event for which the context will be translated
+     *
+     * @returns EventContext The translated EventContext.
+     */
+    function translate(rheaContext: RheaEventContext, emitter: Link | Session | Connection, eventName: string): EventContext;
+}
+//# sourceMappingURL=eventContext.d.ts.map

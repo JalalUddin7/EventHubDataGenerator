@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required metadata tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Generate and send Data to Event Hubs using FakerSchema.">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <title>Generate and send fake data to Event Hubs using JSON-Faker-Schema</title>
+  </head>
+  <body>
+    <!-- Bootstrap navbar-->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="#">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+          <a class="nav-item nav-link" href="/documentation.md">Documentation</a>
+          <a class="nav-item nav-link" href="#">Github</a>
+          <a class="nav-item nav-link" href="#">About</a>
+      
+        </div>
+      </div>
+    </nav>
+    <!-- Bootstrap navbar-->
+
+     <!-- HTML provided in the following sections goes here. -->
+     <div class="container">
+      <h1 align = "center">Event Hub Fake Data Generator</h1>
+      <p>This simple web app uses Faker for random data generation. Learn more about <a href="">Faker</a>.
+     </p>
+     <!-- HTML provided in the following sections goes here. -->
+
+     <!-- End -->
+    
+    <form action="/submit"  method="post">
+        <div class="form-group">
+            <label for="address">Event Hub Connection String</label>
+            <input type="text" class="form-control" name ="connectionstring" value ="" aria-describedby="connectionstring" placeholder="">
+            <label for="user">Event Hub Namespace</label>
+            <input type="text" class="form-control" name="namespace" value ="fakerhub" aria-describedby="namespace" placeholder="">
+            <label for="messages">Number of messages</label>
+            <input type="text" class="form-control" name="messages" aria-describedby="messages" placeholder="" value="100">
+            <label for="fakedata">Fake Data Methods</label>
+            <textarea type="textarea" rows="15" class="form-control" name="method" aria-describedby="fakedata" placeholder="">{ 
+      "employee_id": { 
+          "type": "string",
+          "faker": {
+              "fake": "{{random.uuid}}"
+          }
+      },
+      "employee_name": {
+          "type": "string",
+          "faker": {
+              "fake": "{{name.firstName}} {{name.lastName}}"
+          }
+      },
+      "employee_country": {
+          "type": "string",
+          "faker": {
+              "fake": "{{address.country}}"
+          }
+      },
+      "email_address": {
+          "type": "string",
+          "faker": {
+              "fake": "{{internet.email}}"
+          }
+      },
+      "employee_age": {
+          "type": "integer",
+          "minimum": "18",
+          "maximum": "100"
+      },
+      "employee_department": {
+          "type": "string",
+          "faker": {
+              "random.arrayElement": [["IT", "Finance", "HR", "Marketing", "Sales"]]
+          }
+      },
+      "employee_salary": {
+        "type": "integer",
+        "minimum": "38000",
+        "maximum": "75000"
+    }
+  }
+            
+            </textarea>
+            <small id="emailHelp" class="form-text text-muted">Connection details can be found on the Azure Portal. List of Faker methods can be found: https://github.com/Marak/faker.js/wiki</small>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+     <!-- End -->
+    </div>
+  </div>
+    <!-- Required Javascript for this tutorial -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script type = "text/javascript" src ="static/scripts/mainn.js"></script>
+  </body>
+</html>
