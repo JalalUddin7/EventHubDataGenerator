@@ -1,4 +1,4 @@
-# Getting started 
+# Example Schemas 
 
 The Faker Schema can seem a bit tricky at first. There's a great [playground environment](https://json-schema-faker.js.org/) for you to look at examples and test your own schemas. In the meantime, here are some pre-written, working schemas to get you started.
 
