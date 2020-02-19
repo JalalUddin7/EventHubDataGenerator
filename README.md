@@ -74,5 +74,22 @@ Outputting 'eventData' to console would look like this:
   "firstName": "Oswald"
 }
 ```
+## Using EHDG
 
-## 
+Event Hub Data Generator is available at this [address](https://eventhubdatagenerator.azurewebsites.net/). It should be noted that this is subject to change. Instructions to set up this tool to run locally can be found [here]().
+
+Below is a short, simple guide on how to use the tool. A more detailed guide on the form is available [here]([https://github.com/JalalUddin7/EventHubDataGenerator/blob/master/documentation/Getting%20Started.md](https://github.com/JalalUddin7/EventHubDataGenerator/blob/master/documentation/Getting Started.md)). 
+
+1. Set up an Event Hub through the Azure Portal
+2. Go into the Event Hub's SAS settings and copy the Event Hub's Connection String and Namepace.
+3. Paste those aforementioned values into the web UI into the respective fields.
+4. Specify number of messages you want produced.
+5. Input a valid schema.
+6. Press submit.
+7. Check your Event Hub's monitor to see incoming messages.
+
+![image-20200209160228979](https://i.ibb.co/MMQ7R1Y/homepage.png)
+
+## Going Forward
+
+The possibilities are endless. As mentioned earlier, you can use Event Hub for live dashboarding, and anomaly detection amongst other things. For instance, you can set up a pipeline that includes the following: Event Hub, Stream Analytics and PowerBI and set data alerts in the PowerBI dashboard, which is effectively a way to carry out anomaly detection.
